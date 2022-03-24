@@ -1,0 +1,31 @@
+namespace: timhatdiehandandermaus
+
+deployment:
+  name: plex-request
+  image: ghcr.io/tim-hat-die-hand-an-der-maus/plex-request:__TAG__
+  imagePullPolicy: Always
+  revisionHistoryLimit: 1
+  replicas: 2
+  ports:
+  - 80
+  labels:
+    app: plex-request
+  requests:
+    cpu: 50m
+    memory: 10Mi
+  limit:
+    cpu: 300m
+    memory: 50Mi
+
+service:
+  name: plex-request
+  port: 80
+  targetPort: 80
+  appSelector: plex-request
+
+ingress:
+  hosts:
+    - plex-request.timhatdiehandandermaus.consulting
+  secret: tls-plex-request
+  issuer: letsencrypt-issuer
+  name: plex-request
