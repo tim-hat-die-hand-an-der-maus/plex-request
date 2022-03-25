@@ -7,7 +7,7 @@ deployment:
   revisionHistoryLimit: 1
   replicas: 2
   ports:
-  - 8080
+  - 8000
   labels:
     app: plex-request
   requests:
@@ -20,7 +20,7 @@ deployment:
 service:
   name: plex-request
   port: 80
-  targetPort: 8080
+  targetPort: 8000
   appSelector: plex-request
 
 ingress:
