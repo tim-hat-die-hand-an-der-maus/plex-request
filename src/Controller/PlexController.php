@@ -12,7 +12,7 @@ class PlexController
     public function available_movies(): Response
     {
         $client = new NativeHttpClient();
-        $response = $client->request("GET", "http://127.0.0.1:8080/movies");
+        $response = $client->request("GET", "http://plex-resolver");
         $content = $response->getContent();
 
         $response = new Response($content);
