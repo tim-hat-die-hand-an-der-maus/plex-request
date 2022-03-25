@@ -7,10 +7,19 @@ RUN wget https://getcomposer.org/installer -O composer-setup.php
 
 COPY composer.json .
 COPY composer.lock .
+COPY symfony.lock .
+COPY bin bin
+COPY assets assets
+COPY config config
+COPY migrations migrations
+COPY public public
+COPY src src
+COPY translations translations
+COPY .env .env
+
+ENV APP_ENV prod
 
 RUN php composer-setup.php && \
  	php composer.phar install
-
-COPY . .
 
 CMD ["symfony", "server:start"]
