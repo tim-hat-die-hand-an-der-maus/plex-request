@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3912f618b8ed3be33af46d5a1e2b7fa8",
+    "content-hash": "18c15c7517af4bedd58aecff1c1c0190",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1855,16 +1855,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.5.1",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "981cc368a216c988e862a75e526b6076987d1b50"
+                "reference": "3cb62d10845338136ff4ba299ab0986bbf84ba77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/981cc368a216c988e862a75e526b6076987d1b50",
-                "reference": "981cc368a216c988e862a75e526b6076987d1b50",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/3cb62d10845338136ff4ba299ab0986bbf84ba77",
+                "reference": "3cb62d10845338136ff4ba299ab0986bbf84ba77",
                 "shasum": ""
             },
             "require": {
@@ -1893,9 +1893,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.5.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.6.0"
             },
-            "time": "2022-05-05T11:32:40+00:00"
+            "time": "2022-06-09T09:45:59+00:00"
         },
         {
             "name": "psr/cache",
