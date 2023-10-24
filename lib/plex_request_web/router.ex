@@ -1,5 +1,6 @@
 defmodule PlexRequestWeb.Router do
   use PlexRequestWeb, :router
+  import Plug.BasicAuth
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,20 +15,67 @@ defmodule PlexRequestWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :basicauth do
+    plug :basic_auth,
+      username: System.get_env("AUTH_USERNAME"),
+      password: System.get_env("AUTH_PASSWORD")
+  end
+
+  def auth(conn, _opts) do
+    token = case conn |> get_req_header("x-api-token") do
+              [] -> nil
+              token -> token
+            end
+
+    correct_token = System.get_env("API_TOKEN")
+
+    case token do
+      nil -> conn
+             |> put_resp_header("Content-Type", "application/json")
+             |> resp(401, '{"message": "Missing `X-Api-Token` header`"}')
+             |> halt()
+      [_token] -> case Plug.Crypto.secure_compare(correct_token, _token) do
+                  true -> conn
+                  false -> conn
+                           |> put_resp_header("Content-Type", "application/json")
+                           |> resp(401, '{"message": "Wrong `X-Api-Token`"}')
+                           |> halt()
+                end
+    end
+  end
+
+  pipeline :tokenauth do
+    plug :auth
+  end
+
+  scope "/", PlexRequestWeb do
+    pipe_through [:basicauth, :browser]
+
+    resources "/source", SourceController, except: [:index, :show]
+    resources "/request", RequestController, except: [:index, :show]
+  end
+
   scope "/", PlexRequestWeb do
     pipe_through :browser
 
-    resources "/source", SourceController
-    resources "/request", RequestController
+    resources "/source", SourceController, only: [:index, :show]
+    resources "/request", RequestController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
-   scope "/api", PlexRequestWeb do
-     pipe_through :api
+  scope "/api", PlexRequestWeb do
+    pipe_through [:api, :auth]
 
-     resources "/request", Api.RequestController
-     resources "/source", Api.SourceController
-   end
+    resources "/request", Api.RequestController, except: [:index, :show]
+    resources "/source", Api.SourceController, except: [:index, :show]
+  end
+
+  scope "/api", PlexRequestWeb do
+    pipe_through :api
+
+    resources "/request", Api.RequestController, only: [:index, :show]
+    resources "/source", Api.SourceController, only: [:index, :show]
+  end
 
   # Enable LiveDashboard in development
   if Application.compile_env(:plex_request, :dev_routes) do
