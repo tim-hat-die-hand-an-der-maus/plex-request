@@ -16,14 +16,15 @@ defmodule PlexRequestWeb.Router do
 
   scope "/", PlexRequestWeb do
     pipe_through :browser
-
-    get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PlexRequestWeb do
-  #   pipe_through :api
-  # end
+   scope "/api", PlexRequestWeb do
+     pipe_through :api
+
+     resources "/request", Api.RequestController
+     resources "/source", Api.SourceController
+   end
 
   # Enable LiveDashboard in development
   if Application.compile_env(:plex_request, :dev_routes) do

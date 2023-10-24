@@ -11,7 +11,7 @@ mix phx.new plex_request --database postgres --no-mailer --install
 #### Source
 
 ```shell
-mix phx.gen.json Sources Source source name:string --web Api
+mix phx.gen.json Requests Source source name:string --web Api
 ```
 
 #### Request

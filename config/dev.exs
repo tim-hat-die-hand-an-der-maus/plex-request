@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :plex_request, PlexRequest.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "user",
+  password: "password",
   hostname: "localhost",
   database: "plex_request_dev",
   stacktrace: true,
