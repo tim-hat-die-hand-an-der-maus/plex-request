@@ -32,8 +32,8 @@ deployment:
     name: migration
     image: __IMAGE_NAME__:__TAG__
     imagePullPolicy: IfNotPresent
-    command: [ "mix" ]
-    args: [ "ecto.migrate" ]
+    command: [ "/app/bin/migrate" ]
+    args: []
     requests:
       cpu: 50m
       memory: 10Mi
