@@ -1,0 +1,23 @@
+<.header>
+  Listing Source
+  <:actions>
+    <.link href={~p"/source/new"}>
+      <.button>New Source</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="source" rows={@source_collection} row_click={&JS.navigate(~p"/source/#{&1}")}>
+  <:col :let={source} label="Name"><%= source.name %></:col>
+  <:action :let={source}>
+    <div class="sr-only">
+      <.link navigate={~p"/source/#{source}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/source/#{source}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={source}>
+    <.link href={~p"/source/#{source}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

@@ -16,6 +16,8 @@ defmodule PlexRequestWeb.Router do
 
   scope "/", PlexRequestWeb do
     pipe_through :browser
+
+    resources "/source", SourceController
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,8 @@
+<.header>
+  Edit Source <%= @source.id %>
+  <:subtitle>Use this form to manage source records in your database.</:subtitle>
+</.header>
+
+<.source_form changeset={@changeset} action={~p"/source/#{@source}"} />
+
+<.back navigate={~p"/source"}>Back to source</.back>
