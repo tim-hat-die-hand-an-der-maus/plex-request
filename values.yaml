@@ -1,0 +1,68 @@
+namespace: timhatdiehandandermaus
+
+appPort: &appPort 4000
+name: &name plex-request
+
+database:
+  name: plexrequest-prod
+  team: plexrequest
+  replicas: 1
+  volume:
+    size: 1Gi
+  postgres:
+    version: 15
+
+deployment:
+  name: *name
+  image: __IMAGE_NAME__:__TAG__
+  imagePullPolicy: IfNotPresent
+  revisionHistoryLimit: 1
+  replicas: 2
+  ports:
+    - *appPort
+  labels:
+    app: *name
+  requests:
+    cpu: 50m
+    memory: 10Mi
+  limit:
+    cpu: 300m
+    memory: 500Mi
+  migration:
+    name: migration
+    image: __IMAGE_NAME__:__TAG__
+    imagePullPolicy: IfNotPresent
+    command: [ "mix" ]
+    args: [ "ecto.migrate" ]
+    requests:
+      cpu: 50m
+      memory: 10Mi
+
+service:
+  name: *name
+  port: 80
+  targetPort: *appPort
+  appSelector: *name
+
+ingress:
+  hosts:
+    - plex-request.timhatdiehandandermaus.consulting
+  secret: tls-plex-request
+  issuer: letsencrypt-issuer
+  name: *name
+
+secret:
+  name: *name
+  basicAuth:
+    username: __AUTH_USERNAME__
+    password: __AUTH_PASSWORD__
+  secretKeyBase: __SECRET_KEY_BASE__
+
+postgresSecretName: "postgres.plexrequest-prod.credentials.postgresql.acid.zalan.do"
+
+configmap:
+  name: *name
+  database:
+    host: plexrequest-prod
+    port: 5432
+    name: plex_request

@@ -1,0 +1,24 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: {{ .Values.database.name }}
+  namespace: {{ .Values.namespace | default .Release.Namespace }}
+spec:
+  teamId: {{ .Values.database.team }}
+  volume:
+    size: {{ .Values.database.volume.size }}
+  numberOfInstances: {{ .Values.database.replicas }}
+  users:
+    admin:
+      - superuser
+      - createdb
+    postgres:
+      - createdb
+  preparedDatabases:
+    plex_request:
+      defaultUsers: true
+  postgresql:
+    version: {{ .Values.database.postgres.version | quote }}
+  env:
+    - name: ALLOW_NOSSL
+      value: "true"

@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{- range $k, $v := .Values.deployment.labels }}
+      {{ $k }}: {{ $v }}
+      {{- end }}
+  template:
+    metadata:
+      labels:
+        {{- range $k, $v := .Values.deployment.labels }}
+        {{ $k }}: {{ $v }}
+        {{- end }}
+    spec:
+      initContainers:
+        - args: {{ .Values.deployment.migration.args }}
+          command: {{ .Values.deployment.migration.command }}
+          name: {{ .Values.deployment.migration.name }}
+          image: {{ .Values.deployment.migration.image }}
+          imagePullPolicy: {{ .Values.deployment.migration.imagePullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.secret.name }}
+            - secretRef:
+                name: {{ .Values.postgresSecretName }}
+            - configMapRef:
+                name: {{ .Values.configmap.name }}
+          resources:
+            requests:
+              cpu: {{ .Values.deployment.migration.requests.cpu }}
+              memory: {{ .Values.deployment.migration.requests.memory }}
+      containers:
+        - name: {{ .Values.deployment.name }}
+          image: {{ .Values.deployment.image }}
+          imagePullPolicy: {{ .Values.deployment.imagePullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ .Values.secret.name }}
+            - secretRef:
+                name: {{ .Values.postgresSecretName }}
+            - configMapRef:
+                name: {{ .Values.configmap.name }}
+          ports:
+        {{- range $port := .Values.deployment.ports }}
+            - containerPort: {{ $port }}
+              protocol: TCP
+        {{- end }}
+          resources:
+            requests:
+              cpu: {{ .Values.deployment.requests.cpu }}
+              memory: {{ .Values.deployment.requests.memory }}
+            limits:
+              cpu: {{ .Values.deployment.limit.cpu }}
+              memory: {{ .Values.deployment.limit.memory }}
