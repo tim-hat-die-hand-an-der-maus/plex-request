@@ -13,6 +13,8 @@ defmodule PlexRequest.Requests.Request do
   def changeset(request, attrs) do
     request
     |> cast(attrs, [:upstream_id, :source_id])
+    |> foreign_key_constraint(:source_id)
     |> validate_required([:upstream_id, :source_id])
+    |> unique_constraint(:upstream_id)
   end
 end

@@ -9,6 +9,7 @@ defmodule PlexRequest.Repo.Migrations.CreateRequest do
       timestamps()
     end
 
+    create unique_index(:request, [:upstream_id])
     create index(:request, [:source_id])
   end
 end

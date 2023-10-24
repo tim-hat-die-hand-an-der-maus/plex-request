@@ -1,0 +1,8 @@
+<.header>
+  Edit Request <%= @request.id %>
+  <:subtitle>Use this form to manage request records in your database.</:subtitle>
+</.header>
+
+<.request_form changeset={@changeset} action={~p"/request/#{@request}"} sources={@source_collection} />
+
+<.back navigate={~p"/request"}>Back to request</.back>

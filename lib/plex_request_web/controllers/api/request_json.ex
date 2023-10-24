@@ -20,7 +20,7 @@ defmodule PlexRequestWeb.Api.RequestJSON do
     %{
       id: request.id,
       upstream_id: request.upstream_id,
-      source: Api.SourceJSON.data(request.source),
+      source_id: request.source_id,
     }
   end
 end

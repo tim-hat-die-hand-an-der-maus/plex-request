@@ -1,0 +1,16 @@
+<.header>
+  Request <%= @request.id %>
+  <:subtitle>This is a request record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/request/#{@request}/edit"}>
+      <.button>Edit request</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Upstream"><%= @request.upstream_id %></:item>
+  <:item title="Source"><%= @request.source.name %></:item>
+</.list>
+
+<.back navigate={~p"/request"}>Back to request</.back>

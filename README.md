@@ -19,4 +19,5 @@ mix phx.gen.json Requests Source source name:string --web Api
 
 ```shell
 mix phx.gen.json Requests Request request upstream_id:string source_id:references:source --web Api
+mix phx.gen.html Requests Request request upstream_id:string source_id:references:source --no-schema --no-context
 ```
