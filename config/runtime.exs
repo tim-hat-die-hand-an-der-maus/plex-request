@@ -21,12 +21,12 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
-      raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
+  database_user = System.get_env("username") || raise "`username` has to be set"
+  database_password = System.get_env("password") || raise "`password` has to be set"
+  database_host = System.get_env("DATABASE_HOST") || raise "`DATABASE_HOST` has to be set"
+  database_port = System.get_env("DATABASE_PORT") || "5432"
+  database_name = System.get_env("DATABASE_NAME") || "plex_request_dev"
+  database_url = "postgresql://#{database_user}:#{database_password}@#{database_host}:#{database_port}/#{database_name}"
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6") in ~w(true 1), do: [:inet6], else: []
 
