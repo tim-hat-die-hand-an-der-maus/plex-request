@@ -1,0 +1,15 @@
+<.header>
+  Server <%= @server.id %>
+  <:subtitle>This is a server record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/server/#{@server}/edit"}>
+      <.button>Edit server</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @server.name %></:item>
+</.list>
+
+<.back navigate={~p"/server"}>Back to server</.back>

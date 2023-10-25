@@ -1,0 +1,23 @@
+<.header>
+  Listing Server
+  <:actions>
+    <.link href={~p"/server/new"}>
+      <.button>New Server</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="server" rows={@server_collection} row_click={&JS.navigate(~p"/server/#{&1}")}>
+  <:col :let={server} label="Name"><%= server.name %></:col>
+  <:action :let={server}>
+    <div class="sr-only">
+      <.link navigate={~p"/server/#{server}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/server/#{server}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={server}>
+    <.link href={~p"/server/#{server}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
