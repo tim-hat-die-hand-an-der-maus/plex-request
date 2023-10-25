@@ -34,7 +34,7 @@ defmodule PlexRequestWeb.Router do
              |> put_resp_header("Content-Type", "application/json")
              |> resp(401, '{"message": "Missing `X-Api-Token` header`"}')
              |> halt()
-      cmptoken -> case Plug.Crypto.secure_compare(correct_token, cmptoken) do
+      [cmptoken] -> case Plug.Crypto.secure_compare(correct_token, cmptoken) do
                   true -> conn
                   false -> conn
                            |> put_resp_header("Content-Type", "application/json")
