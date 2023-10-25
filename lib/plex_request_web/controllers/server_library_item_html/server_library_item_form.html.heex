@@ -5,7 +5,7 @@
   <.input field={f[:name]} type="text" label="Name" />
   <.input field={f[:year]} type="number" label="Year" />
   <.input field={f[:rating_key]} type="number" label="Rating key" />
-  <select id="server_library_item_server_library_id" name="server_library_item[server_library__id]">
+  <select id="server_library_item_server_library_id" name="server_library_item[server_library_id]">
     <%= for server_library <- @server_libraries do %>
       <option value={server_library.id}><%= server_library.name %></option>
     <% end %>
