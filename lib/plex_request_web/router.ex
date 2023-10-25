@@ -55,6 +55,7 @@ defmodule PlexRequestWeb.Router do
     resources "/request", RequestController, except: [:index, :show]
     resources "/server", ServerController, except: [:index, :show]
     resources "/library", LibraryController, except: [:index, :show]
+    resources "/server_library", ServerLibraryController, except: [:index, :show]
   end
 
   scope "/", PlexRequestWeb do
@@ -64,6 +65,7 @@ defmodule PlexRequestWeb.Router do
     resources "/request", RequestController, only: [:index, :show]
     resources "/server", ServerController, only: [:index, :show]
     resources "/library", LibraryController, only: [:index, :show]
+    resources "/server_library", ServerLibraryController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
@@ -74,6 +76,7 @@ defmodule PlexRequestWeb.Router do
     resources "/source", Api.SourceController, except: [:index, :show]
     resources "/server", Api.ServerController, except: [:index, :show]
     resources "/library", Api.LibraryController, except: [:index, :show]
+    resources "/server_library", Api.ServerLibraryController, except: [:index, :show]
   end
 
   scope "/api", PlexRequestWeb do
@@ -83,6 +86,7 @@ defmodule PlexRequestWeb.Router do
     resources "/source", Api.SourceController, only: [:index, :show]
     resources "/server", Api.ServerController, only: [:index, :show]
     resources "/library", Api.LibraryController, only: [:index, :show]
+    resources "/server_library", Api.ServerLibraryController, only: [:index, :show]
   end
 
   # Enable LiveDashboard in development

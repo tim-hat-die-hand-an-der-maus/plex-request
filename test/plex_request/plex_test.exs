@@ -110,4 +110,58 @@ defmodule PlexRequest.PlexTest do
       assert %Ecto.Changeset{} = Plex.change_library(library)
     end
   end
+
+  describe "server_library" do
+    alias PlexRequest.Plex.ServerLibrary
+
+    import PlexRequest.PlexFixtures
+
+    @invalid_attrs %{name: nil}
+
+    test "list_server_library/0 returns all server_library" do
+      server_library = server_library_fixture()
+      assert Plex.list_server_library() == [server_library]
+    end
+
+    test "get_server_library!/1 returns the server_library with given id" do
+      server_library = server_library_fixture()
+      assert Plex.get_server_library!(server_library.id) == server_library
+    end
+
+    test "create_server_library/1 with valid data creates a server_library" do
+      valid_attrs = %{name: "some name"}
+
+      assert {:ok, %ServerLibrary{} = server_library} = Plex.create_server_library(valid_attrs)
+      assert server_library.name == "some name"
+    end
+
+    test "create_server_library/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Plex.create_server_library(@invalid_attrs)
+    end
+
+    test "update_server_library/2 with valid data updates the server_library" do
+      server_library = server_library_fixture()
+      update_attrs = %{name: "some updated name"}
+
+      assert {:ok, %ServerLibrary{} = server_library} = Plex.update_server_library(server_library, update_attrs)
+      assert server_library.name == "some updated name"
+    end
+
+    test "update_server_library/2 with invalid data returns error changeset" do
+      server_library = server_library_fixture()
+      assert {:error, %Ecto.Changeset{}} = Plex.update_server_library(server_library, @invalid_attrs)
+      assert server_library == Plex.get_server_library!(server_library.id)
+    end
+
+    test "delete_server_library/1 deletes the server_library" do
+      server_library = server_library_fixture()
+      assert {:ok, %ServerLibrary{}} = Plex.delete_server_library(server_library)
+      assert_raise Ecto.NoResultsError, fn -> Plex.get_server_library!(server_library.id) end
+    end
+
+    test "change_server_library/1 returns a server_library changeset" do
+      server_library = server_library_fixture()
+      assert %Ecto.Changeset{} = Plex.change_server_library(server_library)
+    end
+  end
 end

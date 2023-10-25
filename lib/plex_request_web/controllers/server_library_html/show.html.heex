@@ -1,0 +1,17 @@
+<.header>
+  Server library <%= @server_library.id %>
+  <:subtitle>This is a server_library record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/server_library/#{@server_library}/edit"}>
+      <.button>Edit server_library</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @server_library.name %></:item>
+  <:item title="Server"><%= @server_library.server.name %></:item>
+  <:item title="Library"><%= @server_library.library.name %></:item>
+</.list>
+
+<.back navigate={~p"/server_library"}>Back to server_library</.back>

@@ -1,0 +1,25 @@
+<.header>
+  Listing Server library
+  <:actions>
+    <.link href={~p"/server_library/new"}>
+      <.button>New Server library</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="server_library" rows={@server_library_collection} row_click={&JS.navigate(~p"/server_library/#{&1}")}>
+  <:col :let={server_library} label="Name"><%= server_library.name %></:col>
+  <:col :let={server_library} label="Name"><%= server_library.library.name %></:col>
+  <:col :let={server_library} label="Name"><%= server_library.server.name %></:col>
+  <:action :let={server_library}>
+    <div class="sr-only">
+      <.link navigate={~p"/server_library/#{server_library}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/server_library/#{server_library}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={server_library}>
+    <.link href={~p"/server_library/#{server_library}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

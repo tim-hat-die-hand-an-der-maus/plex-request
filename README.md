@@ -35,3 +35,10 @@ mix phx.gen.html Plex Server server name:string --no-schema --no-context
 mix phx.gen.json Plex Library library name:string --web Api
 mix phx.gen.html Plex Library library name:string --no-schema --no-context
 ```
+
+#### ServerLibrary
+
+```shell
+mix phx.gen.json Plex ServerLibrary server_library name:string server_id:references:server library_id:references:library --web Api
+mix phx.gen.html Plex ServerLibrary server_library name:string server_id:references:server library_id:references:library --no-schema --no-context
+```

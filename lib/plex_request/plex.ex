@@ -197,4 +197,104 @@ defmodule PlexRequest.Plex do
   def change_library(%Library{} = library, attrs \\ %{}) do
     Library.changeset(library, attrs)
   end
+
+  alias PlexRequest.Plex.ServerLibrary
+
+  @doc """
+  Returns the list of server_library.
+
+  ## Examples
+
+      iex> list_server_library()
+      [%ServerLibrary{}, ...]
+
+  """
+  def list_server_library do
+    Repo.all(ServerLibrary)
+    |> Repo.preload([:server, :library])
+  end
+
+  @doc """
+  Gets a single server_library.
+
+  Raises `Ecto.NoResultsError` if the Server library does not exist.
+
+  ## Examples
+
+      iex> get_server_library!(123)
+      %ServerLibrary{}
+
+      iex> get_server_library!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_server_library!(id) do
+    Repo.get!(ServerLibrary, id)
+    |> Repo.preload([:server, :library])
+  end
+
+  @doc """
+  Creates a server_library.
+
+  ## Examples
+
+      iex> create_server_library(%{field: value})
+      {:ok, %ServerLibrary{}}
+
+      iex> create_server_library(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_server_library(attrs \\ %{}) do
+    %ServerLibrary{}
+    |> ServerLibrary.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a server_library.
+
+  ## Examples
+
+      iex> update_server_library(server_library, %{field: new_value})
+      {:ok, %ServerLibrary{}}
+
+      iex> update_server_library(server_library, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_server_library(%ServerLibrary{} = server_library, attrs) do
+    server_library
+    |> ServerLibrary.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a server_library.
+
+  ## Examples
+
+      iex> delete_server_library(server_library)
+      {:ok, %ServerLibrary{}}
+
+      iex> delete_server_library(server_library)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_server_library(%ServerLibrary{} = server_library) do
+    Repo.delete(server_library)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking server_library changes.
+
+  ## Examples
+
+      iex> change_server_library(server_library)
+      %Ecto.Changeset{data: %ServerLibrary{}}
+
+  """
+  def change_server_library(%ServerLibrary{} = server_library, attrs \\ %{}) do
+    ServerLibrary.changeset(server_library, attrs)
+  end
 end

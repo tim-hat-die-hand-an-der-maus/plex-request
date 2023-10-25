@@ -1,0 +1,8 @@
+<.header>
+  New Server library
+  <:subtitle>Use this form to manage server_library records in your database.</:subtitle>
+</.header>
+
+<.server_library_form changeset={@changeset} action={~p"/server_library"} libraries={@library_collection} servers={@server_collection} />
+
+<.back navigate={~p"/server_library"}>Back to server_library</.back>
