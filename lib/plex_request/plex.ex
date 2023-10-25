@@ -297,4 +297,104 @@ defmodule PlexRequest.Plex do
   def change_server_library(%ServerLibrary{} = server_library, attrs \\ %{}) do
     ServerLibrary.changeset(server_library, attrs)
   end
+
+  alias PlexRequest.Plex.ServerLibraryItem
+
+  @doc """
+  Returns the list of server_library_item.
+
+  ## Examples
+
+      iex> list_server_library_item()
+      [%ServerLibraryItem{}, ...]
+
+  """
+  def list_server_library_item do
+    Repo.all(ServerLibraryItem)
+    |> Repo.preload(:server_library)
+  end
+
+  @doc """
+  Gets a single server_library_item.
+
+  Raises `Ecto.NoResultsError` if the Server library item does not exist.
+
+  ## Examples
+
+      iex> get_server_library_item!(123)
+      %ServerLibraryItem{}
+
+      iex> get_server_library_item!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_server_library_item!(id) do
+    Repo.get!(ServerLibraryItem, id)
+    |> Repo.preload(:server_library)
+  end
+
+  @doc """
+  Creates a server_library_item.
+
+  ## Examples
+
+      iex> create_server_library_item(%{field: value})
+      {:ok, %ServerLibraryItem{}}
+
+      iex> create_server_library_item(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_server_library_item(attrs \\ %{}) do
+    %ServerLibraryItem{}
+    |> ServerLibraryItem.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a server_library_item.
+
+  ## Examples
+
+      iex> update_server_library_item(server_library_item, %{field: new_value})
+      {:ok, %ServerLibraryItem{}}
+
+      iex> update_server_library_item(server_library_item, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_server_library_item(%ServerLibraryItem{} = server_library_item, attrs) do
+    server_library_item
+    |> ServerLibraryItem.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a server_library_item.
+
+  ## Examples
+
+      iex> delete_server_library_item(server_library_item)
+      {:ok, %ServerLibraryItem{}}
+
+      iex> delete_server_library_item(server_library_item)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_server_library_item(%ServerLibraryItem{} = server_library_item) do
+    Repo.delete(server_library_item)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking server_library_item changes.
+
+  ## Examples
+
+      iex> change_server_library_item(server_library_item)
+      %Ecto.Changeset{data: %ServerLibraryItem{}}
+
+  """
+  def change_server_library_item(%ServerLibraryItem{} = server_library_item, attrs \\ %{}) do
+    ServerLibraryItem.changeset(server_library_item, attrs)
+  end
 end

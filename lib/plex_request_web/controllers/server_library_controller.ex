@@ -31,7 +31,7 @@ defmodule PlexRequestWeb.ServerLibraryController do
 
   def show(conn, %{"id" => id}) do
     server_library = Plex.get_server_library!(id)
-    IO.inspect(server_library)
+
     render(conn, :show, server_library: server_library)
   end
 

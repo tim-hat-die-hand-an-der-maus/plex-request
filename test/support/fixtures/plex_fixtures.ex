@@ -45,4 +45,20 @@ defmodule PlexRequest.PlexFixtures do
 
     server_library
   end
+
+  @doc """
+  Generate a server_library_item.
+  """
+  def server_library_item_fixture(attrs \\ %{}) do
+    {:ok, server_library_item} =
+      attrs
+      |> Enum.into(%{
+        name: "some name",
+        rating_key: 42,
+        year: 42
+      })
+      |> PlexRequest.Plex.create_server_library_item()
+
+    server_library_item
+  end
 end

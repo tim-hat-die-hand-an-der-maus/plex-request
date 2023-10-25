@@ -1,0 +1,16 @@
+<.simple_form :let={f} for={@changeset} action={@action} server_libraries={} >
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:name]} type="text" label="Name" />
+  <.input field={f[:year]} type="number" label="Year" />
+  <.input field={f[:rating_key]} type="number" label="Rating key" />
+  <select id="server_library_item_server_library_id" name="server_library_item[server_library__id]">
+    <%= for server_library <- @server_libraries do %>
+      <option value={server_library.id}><%= server_library.name %></option>
+    <% end %>
+  </select>
+  <:actions>
+    <.button>Save Server library item</.button>
+  </:actions>
+</.simple_form>

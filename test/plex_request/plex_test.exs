@@ -164,4 +164,62 @@ defmodule PlexRequest.PlexTest do
       assert %Ecto.Changeset{} = Plex.change_server_library(server_library)
     end
   end
+
+  describe "server_library_item" do
+    alias PlexRequest.Plex.ServerLibraryItem
+
+    import PlexRequest.PlexFixtures
+
+    @invalid_attrs %{name: nil, year: nil, rating_key: nil}
+
+    test "list_server_library_item/0 returns all server_library_item" do
+      server_library_item = server_library_item_fixture()
+      assert Plex.list_server_library_item() == [server_library_item]
+    end
+
+    test "get_server_library_item!/1 returns the server_library_item with given id" do
+      server_library_item = server_library_item_fixture()
+      assert Plex.get_server_library_item!(server_library_item.id) == server_library_item
+    end
+
+    test "create_server_library_item/1 with valid data creates a server_library_item" do
+      valid_attrs = %{name: "some name", year: 42, rating_key: 42}
+
+      assert {:ok, %ServerLibraryItem{} = server_library_item} = Plex.create_server_library_item(valid_attrs)
+      assert server_library_item.name == "some name"
+      assert server_library_item.year == 42
+      assert server_library_item.rating_key == 42
+    end
+
+    test "create_server_library_item/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Plex.create_server_library_item(@invalid_attrs)
+    end
+
+    test "update_server_library_item/2 with valid data updates the server_library_item" do
+      server_library_item = server_library_item_fixture()
+      update_attrs = %{name: "some updated name", year: 43, rating_key: 43}
+
+      assert {:ok, %ServerLibraryItem{} = server_library_item} = Plex.update_server_library_item(server_library_item, update_attrs)
+      assert server_library_item.name == "some updated name"
+      assert server_library_item.year == 43
+      assert server_library_item.rating_key == 43
+    end
+
+    test "update_server_library_item/2 with invalid data returns error changeset" do
+      server_library_item = server_library_item_fixture()
+      assert {:error, %Ecto.Changeset{}} = Plex.update_server_library_item(server_library_item, @invalid_attrs)
+      assert server_library_item == Plex.get_server_library_item!(server_library_item.id)
+    end
+
+    test "delete_server_library_item/1 deletes the server_library_item" do
+      server_library_item = server_library_item_fixture()
+      assert {:ok, %ServerLibraryItem{}} = Plex.delete_server_library_item(server_library_item)
+      assert_raise Ecto.NoResultsError, fn -> Plex.get_server_library_item!(server_library_item.id) end
+    end
+
+    test "change_server_library_item/1 returns a server_library_item changeset" do
+      server_library_item = server_library_item_fixture()
+      assert %Ecto.Changeset{} = Plex.change_server_library_item(server_library_item)
+    end
+  end
 end
