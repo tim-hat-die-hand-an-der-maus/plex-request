@@ -12,5 +12,6 @@ defmodule PlexRequest.Repo.Migrations.CreateServerLibrary do
 
     create index(:server_library, [:server_id])
     create index(:server_library, [:library_id])
+    create unique_index(:server_library, [:server_id, :library_id], name: :unique_serverlibrary)
   end
 end
