@@ -221,6 +221,30 @@ defmodule PlexRequest.Requests do
   end
 
   @doc """
+  Returns the server names which have fulfiled the given request
+
+  ## Examples
+
+      iex> get_request_fulfilment_status(1)
+      ["{name}"]
+
+  """
+  def get_request_fulfilment_status(request_id) do
+    {rid, _} = Integer.parse request_id
+
+    alias PlexRequest.Plex
+    query = from r in "request_fulfilment",
+              where: r.request_id == ^rid,
+              join: sli in Plex.ServerLibraryItem, on: sli.id == r.server_library_item_id,
+              join: sl in Plex.ServerLibrary, on: sli.server_library_id == sl.id,
+              join: server in Plex.Server, on: server.id == sl.server_id ,
+              select: server.name
+
+    query
+    |> Repo.all()
+  end
+
+  @doc """
   Gets a single request_fulfilment.
 
   Raises `Ecto.NoResultsError` if the Request fulfilment does not exist.

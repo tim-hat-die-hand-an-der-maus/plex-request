@@ -32,6 +32,7 @@ defmodule PlexRequestWeb.RequestFulfilmentController do
 
   def show(conn, %{"id" => id}) do
     request_fulfilment = Requests.get_request_fulfilment!(id)
+
     render(conn, :show, request_fulfilment: request_fulfilment)
   end
 

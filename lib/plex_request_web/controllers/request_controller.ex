@@ -30,7 +30,9 @@ defmodule PlexRequestWeb.RequestController do
 
   def show(conn, %{"id" => id}) do
     request = Requests.get_request!(id)
-    render(conn, :show, request: request)
+    status = Requests.get_request_fulfilment_status(id)
+
+    render(conn, :show, request: request, fulfiled_on: status)
   end
 
   def edit(conn, %{"id" => id}) do

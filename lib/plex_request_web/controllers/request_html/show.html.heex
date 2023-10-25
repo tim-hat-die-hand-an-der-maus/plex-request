@@ -13,4 +13,13 @@
   <:item title="Source"><%= @request.source.name %></:item>
 </.list>
 
+<br><br>
+
+<p>Fulfiled on</p>
+<ul>
+<%= for server_name <- @fulfiled_on do %>
+<li><%= server_name %></li>
+<% end %>
+</ul>
+
 <.back navigate={~p"/request"}>Back to request</.back>

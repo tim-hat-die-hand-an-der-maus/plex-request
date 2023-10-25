@@ -11,8 +11,6 @@ defmodule PlexRequest.Requests.RequestFulfilment do
 
   @doc false
   def changeset(request_fulfilment, attrs) do
-    IO.inspect(request_fulfilment)
-
     request_fulfilment
     |> cast(attrs, [:request_id, :server_library_item_id])
     |> validate_required([:request_id, :server_library_item_id])
