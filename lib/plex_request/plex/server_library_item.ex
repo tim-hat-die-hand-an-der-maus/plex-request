@@ -16,6 +16,7 @@ defmodule PlexRequest.Plex.ServerLibraryItem do
     server_library_item
     |> cast(attrs, [:name, :year, :rating_key, :server_library_id])
     |> validate_required([:name, :year, :rating_key, :server_library_id])
+    |> foreign_key_constraint(:server_library_id)
     |> unique_constraint(:unique_server_library_rating_key, name: :unique_server_library_rating_key)
   end
 end
