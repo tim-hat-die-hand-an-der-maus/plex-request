@@ -1,0 +1,24 @@
+<.header>
+  Listing Request fulfilment
+  <:actions>
+    <.link href={~p"/request_fulfilment/new"}>
+      <.button>New Request fulfilment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="request_fulfilment" rows={@request_fulfilment_collection} row_click={&JS.navigate(~p"/request_fulfilment/#{&1}")}>
+  <:col :let={request_fulfilment} label="Name"><%= request_fulfilment.request.upstream_id %></:col>
+  <:col :let={request_fulfilment} label="Name"><%= request_fulfilment.server_library_item.name %></:col>
+  <:action :let={request_fulfilment}>
+    <div class="sr-only">
+      <.link navigate={~p"/request_fulfilment/#{request_fulfilment}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/request_fulfilment/#{request_fulfilment}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={request_fulfilment}>
+    <.link href={~p"/request_fulfilment/#{request_fulfilment}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

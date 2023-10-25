@@ -8,7 +8,7 @@
     <option value={server.id}><%= server.name %></option>
     <% end %>
   </select>
-    <select id="server_library_library_id" name="server_library[library_id]">
+  <select id="server_library_library_id" name="server_library[library_id]">
     <%= for library <- @libraries do %>
     <option value={library.id}><%= library.name %></option>
     <% end %>

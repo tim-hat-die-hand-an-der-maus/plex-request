@@ -110,4 +110,56 @@ defmodule PlexRequest.RequestsTest do
       assert %Ecto.Changeset{} = Requests.change_source(source)
     end
   end
+
+  describe "request_fulfilment" do
+    alias PlexRequest.Requests.RequestFulfilment
+
+    import PlexRequest.RequestsFixtures
+
+    @invalid_attrs %{}
+
+    test "list_request_fulfilment/0 returns all request_fulfilment" do
+      request_fulfilment = request_fulfilment_fixture()
+      assert Requests.list_request_fulfilment() == [request_fulfilment]
+    end
+
+    test "get_request_fulfilment!/1 returns the request_fulfilment with given id" do
+      request_fulfilment = request_fulfilment_fixture()
+      assert Requests.get_request_fulfilment!(request_fulfilment.id) == request_fulfilment
+    end
+
+    test "create_request_fulfilment/1 with valid data creates a request_fulfilment" do
+      valid_attrs = %{}
+
+      assert {:ok, %RequestFulfilment{} = request_fulfilment} = Requests.create_request_fulfilment(valid_attrs)
+    end
+
+    test "create_request_fulfilment/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Requests.create_request_fulfilment(@invalid_attrs)
+    end
+
+    test "update_request_fulfilment/2 with valid data updates the request_fulfilment" do
+      request_fulfilment = request_fulfilment_fixture()
+      update_attrs = %{}
+
+      assert {:ok, %RequestFulfilment{} = request_fulfilment} = Requests.update_request_fulfilment(request_fulfilment, update_attrs)
+    end
+
+    test "update_request_fulfilment/2 with invalid data returns error changeset" do
+      request_fulfilment = request_fulfilment_fixture()
+      assert {:error, %Ecto.Changeset{}} = Requests.update_request_fulfilment(request_fulfilment, @invalid_attrs)
+      assert request_fulfilment == Requests.get_request_fulfilment!(request_fulfilment.id)
+    end
+
+    test "delete_request_fulfilment/1 deletes the request_fulfilment" do
+      request_fulfilment = request_fulfilment_fixture()
+      assert {:ok, %RequestFulfilment{}} = Requests.delete_request_fulfilment(request_fulfilment)
+      assert_raise Ecto.NoResultsError, fn -> Requests.get_request_fulfilment!(request_fulfilment.id) end
+    end
+
+    test "change_request_fulfilment/1 returns a request_fulfilment changeset" do
+      request_fulfilment = request_fulfilment_fixture()
+      assert %Ecto.Changeset{} = Requests.change_request_fulfilment(request_fulfilment)
+    end
+  end
 end

@@ -203,4 +203,104 @@ defmodule PlexRequest.Requests do
   def change_source(%Source{} = source, attrs \\ %{}) do
     Source.changeset(source, attrs)
   end
+
+  alias PlexRequest.Requests.RequestFulfilment
+
+  @doc """
+  Returns the list of request_fulfilment.
+
+  ## Examples
+
+      iex> list_request_fulfilment()
+      [%RequestFulfilment{}, ...]
+
+  """
+  def list_request_fulfilment do
+    Repo.all(RequestFulfilment)
+    |> Repo.preload([:request, :server_library_item])
+  end
+
+  @doc """
+  Gets a single request_fulfilment.
+
+  Raises `Ecto.NoResultsError` if the Request fulfilment does not exist.
+
+  ## Examples
+
+      iex> get_request_fulfilment!(123)
+      %RequestFulfilment{}
+
+      iex> get_request_fulfilment!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_request_fulfilment!(id) do
+    Repo.get!(RequestFulfilment, id)
+    |> Repo.preload([:request, :server_library_item])
+  end
+
+  @doc """
+  Creates a request_fulfilment.
+
+  ## Examples
+
+      iex> create_request_fulfilment(%{field: value})
+      {:ok, %RequestFulfilment{}}
+
+      iex> create_request_fulfilment(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_request_fulfilment(attrs \\ %{}) do
+    %RequestFulfilment{}
+    |> RequestFulfilment.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a request_fulfilment.
+
+  ## Examples
+
+      iex> update_request_fulfilment(request_fulfilment, %{field: new_value})
+      {:ok, %RequestFulfilment{}}
+
+      iex> update_request_fulfilment(request_fulfilment, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_request_fulfilment(%RequestFulfilment{} = request_fulfilment, attrs) do
+    request_fulfilment
+    |> RequestFulfilment.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a request_fulfilment.
+
+  ## Examples
+
+      iex> delete_request_fulfilment(request_fulfilment)
+      {:ok, %RequestFulfilment{}}
+
+      iex> delete_request_fulfilment(request_fulfilment)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_request_fulfilment(%RequestFulfilment{} = request_fulfilment) do
+    Repo.delete(request_fulfilment)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking request_fulfilment changes.
+
+  ## Examples
+
+      iex> change_request_fulfilment(request_fulfilment)
+      %Ecto.Changeset{data: %RequestFulfilment{}}
+
+  """
+  def change_request_fulfilment(%RequestFulfilment{} = request_fulfilment, attrs \\ %{}) do
+    RequestFulfilment.changeset(request_fulfilment, attrs)
+  end
 end

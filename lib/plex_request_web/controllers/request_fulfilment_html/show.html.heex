@@ -1,0 +1,16 @@
+<.header>
+  Request fulfilment <%= @request_fulfilment.id %>
+  <:subtitle>This is a request_fulfilment record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/request_fulfilment/#{@request_fulfilment}/edit"}>
+      <.button>Edit request_fulfilment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Request"><%= @request_fulfilment.request.upstream_id %></:item>
+  <:item title="Library"><%= @request_fulfilment.server_library_item.name %></:item>
+</.list>
+
+<.back navigate={~p"/request_fulfilment"}>Back to request_fulfilment</.back>

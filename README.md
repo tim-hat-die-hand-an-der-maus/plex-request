@@ -12,7 +12,7 @@ mix phx.new plex_request --database postgres --no-mailer --install
 
 ```shell
 mix phx.gen.json Requests Source source name:string --web Api
- mix phx.gen.json Requests Source source name:string --no-schema --no-context
+mix phx.gen.json Requests Source source name:string --no-schema --no-context
 ```
 
 #### Request
@@ -48,4 +48,11 @@ mix phx.gen.html Plex ServerLibrary server_library name:string server_id:referen
 ```shell
 mix phx.gen.json Plex ServerLibraryItem server_library_item name:string year:integer rating_key:integer server_library_id:references:server_library --web Api
 mix phx.gen.html Plex ServerLibraryItem server_library_item name:string year:integer rating_key:integer server_library_id:references:server_library --no-schema --no-context
+```
+
+#### RequestFulfilment
+
+```shell
+mix phx.gen.json Requests RequestFulfilment request_fulfilment request_id:references:request server_library_item_id:references:server_library_item --web Api
+mix phx.gen.html Requests RequestFulfilment request_fulfilment request_id:references:request server_library_item_id:references:server_library_item --no-schema --no-context
 ```

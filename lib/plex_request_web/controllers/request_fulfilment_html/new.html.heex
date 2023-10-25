@@ -1,0 +1,8 @@
+<.header>
+  New Request fulfilment
+  <:subtitle>Use this form to manage request_fulfilment records in your database.</:subtitle>
+</.header>
+
+<.request_fulfilment_form changeset={@changeset} action={~p"/request_fulfilment"} requests={@request_collection} server_library_items={@server_library_item_collection} />
+
+<.back navigate={~p"/request_fulfilment"}>Back to request_fulfilment</.back>

@@ -31,4 +31,18 @@ defmodule PlexRequest.RequestsFixtures do
 
     source
   end
+
+  @doc """
+  Generate a request_fulfilment.
+  """
+  def request_fulfilment_fixture(attrs \\ %{}) do
+    {:ok, request_fulfilment} =
+      attrs
+      |> Enum.into(%{
+
+      })
+      |> PlexRequest.Requests.create_request_fulfilment()
+
+    request_fulfilment
+  end
 end
