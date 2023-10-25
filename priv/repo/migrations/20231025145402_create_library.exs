@@ -7,5 +7,7 @@ defmodule PlexRequest.Repo.Migrations.CreateLibrary do
 
       timestamps()
     end
+
+    create unique_index(:library, [:name])
   end
 end

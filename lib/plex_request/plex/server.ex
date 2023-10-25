@@ -13,5 +13,6 @@ defmodule PlexRequest.Plex.Server do
     server
     |> cast(attrs, [:name])
     |> validate_required([:name])
+    |> unique_constraint(:name)
   end
 end
