@@ -17,6 +17,6 @@ defmodule PlexRequest.Plex.ServerLibrary do
     |> validate_required([:name, :library_id, :server_id])
     |> foreign_key_constraint(:library_id)
     |> foreign_key_constraint(:server_id)
-    |> unique_constraint(:unique_serverlibrary, :unique_serverlibrary)
+    |> unique_constraint(:unique_serverlibrary, name: :unique_serverlibrary)
   end
 end
