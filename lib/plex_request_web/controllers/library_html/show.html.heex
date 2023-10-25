@@ -1,0 +1,15 @@
+<.header>
+  Library <%= @library.id %>
+  <:subtitle>This is a library record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/library/#{@library}/edit"}>
+      <.button>Edit library</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @library.name %></:item>
+</.list>
+
+<.back navigate={~p"/library"}>Back to library</.back>

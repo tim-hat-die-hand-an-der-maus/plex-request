@@ -1,0 +1,8 @@
+<.header>
+  Edit Library <%= @library.id %>
+  <:subtitle>Use this form to manage library records in your database.</:subtitle>
+</.header>
+
+<.library_form changeset={@changeset} action={~p"/library/#{@library}"} />
+
+<.back navigate={~p"/library"}>Back to library</.back>

@@ -1,0 +1,23 @@
+<.header>
+  Listing Library
+  <:actions>
+    <.link href={~p"/library/new"}>
+      <.button>New Library</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="library" rows={@library_collection} row_click={&JS.navigate(~p"/library/#{&1}")}>
+  <:col :let={library} label="Name"><%= library.name %></:col>
+  <:action :let={library}>
+    <div class="sr-only">
+      <.link navigate={~p"/library/#{library}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/library/#{library}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={library}>
+    <.link href={~p"/library/#{library}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

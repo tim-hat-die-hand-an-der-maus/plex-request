@@ -28,3 +28,10 @@ mix phx.gen.html Requests Request request upstream_id:string source_id:reference
 mix phx.gen.json Plex Server server name:string --web Api
 mix phx.gen.html Plex Server server name:string --no-schema --no-context
 ```
+
+#### Library
+
+```shell
+mix phx.gen.json Plex Library library name:string --web Api
+mix phx.gen.html Plex Library library name:string --no-schema --no-context
+```
