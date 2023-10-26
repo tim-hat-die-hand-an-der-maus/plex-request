@@ -1,5 +1,10 @@
 FROM hexpm/elixir:1.15.7-erlang-26.1.1-debian-bookworm-20230612-slim as builder
 
+ARG AUTH_USERNAME
+ARG AUTH_PASSWORD
+RUN test -n "$AUTH_USERNAME"
+RUN test -n "$AUTH_PASSWORD"
+
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git \
     && apt-get clean && rm -f /var/lib/apt/lists/*_*

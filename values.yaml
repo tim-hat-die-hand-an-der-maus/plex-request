@@ -53,9 +53,6 @@ ingress:
 
 secret:
   name: *name
-  basicAuth:
-    username: __AUTH_USERNAME__
-    password: __AUTH_PASSWORD__
   apiToken: __AUTH_PASSWORD__
   secretKeyBase: __SECRET_KEY_BASE__
 
