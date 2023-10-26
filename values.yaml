@@ -28,6 +28,7 @@ deployment:
   limit:
     cpu: 300m
     memory: 500Mi
+  healthEndpoint: /health
   migration:
     name: migration
     image: __IMAGE_NAME__:__TAG__
