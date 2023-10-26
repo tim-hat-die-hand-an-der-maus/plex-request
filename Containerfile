@@ -26,6 +26,8 @@ RUN test -n "$AUTH_USERNAME"
 RUN test -n "$AUTH_PASSWORD"
 RUN echo "${#AUTH_USERNAME}"
 RUN echo "${#AUTH_PASSWORD}"
+RUN echo "$AUTH_USERNAME"
+RUN echo "$AUTH_PASSWORD"
 
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git \
