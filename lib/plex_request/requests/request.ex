@@ -5,6 +5,7 @@ defmodule PlexRequest.Requests.Request do
   schema "request" do
     field :upstream_id, :string
     belongs_to :source, PlexRequest.Requests.Source
+    field :fulfiled_by, :string, virtual: true
 
     timestamps()
   end

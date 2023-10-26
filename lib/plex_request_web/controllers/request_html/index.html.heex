@@ -10,6 +10,7 @@
 <.table id="request" rows={@request_collection} row_click={&JS.navigate(~p"/request/#{&1}")}>
   <:col :let={request} label="Upstream"><%= request.upstream_id %></:col>
   <:col :let={request} label="Source"><%= request.source.name %></:col>
+  <:col :let={request} label="Availability"><%= request.fulfiled_by %></:col>
   <:action :let={request}>
     <div class="sr-only">
       <.link navigate={~p"/request/#{request}"}>Show</.link>

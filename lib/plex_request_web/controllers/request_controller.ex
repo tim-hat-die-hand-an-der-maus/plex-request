@@ -6,6 +6,12 @@ defmodule PlexRequestWeb.RequestController do
 
   def index(conn, _params) do
     request = Requests.list_request()
+
+    request =
+      Enum.map(request, fn r ->
+        %{r | fulfiled_by: Enum.join(Requests.get_request_fulfilment_status(r.id), ",")}
+      end)
+
     render(conn, :index, request_collection: request)
   end
 

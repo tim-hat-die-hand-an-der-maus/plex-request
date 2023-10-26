@@ -230,15 +230,26 @@ defmodule PlexRequest.Requests do
 
   """
   def get_request_fulfilment_status(request_id) do
-    {rid, _} = Integer.parse request_id
+    rid =
+      if !is_integer(request_id) do
+        {rid, _} = Integer.parse(request_id)
+        rid
+      else
+        request_id
+      end
 
     alias PlexRequest.Plex
-    query = from r in "request_fulfilment",
-              where: r.request_id == ^rid,
-              join: sli in Plex.ServerLibraryItem, on: sli.id == r.server_library_item_id,
-              join: sl in Plex.ServerLibrary, on: sli.server_library_id == sl.id,
-              join: server in Plex.Server, on: server.id == sl.server_id ,
-              select: server.name
+
+    query =
+      from r in "request_fulfilment",
+        where: r.request_id == ^rid,
+        join: sli in Plex.ServerLibraryItem,
+        on: sli.id == r.server_library_item_id,
+        join: sl in Plex.ServerLibrary,
+        on: sli.server_library_id == sl.id,
+        join: server in Plex.Server,
+        on: server.id == sl.server_id,
+        select: server.name
 
     query
     |> Repo.all()
