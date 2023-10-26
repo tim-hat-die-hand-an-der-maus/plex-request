@@ -63,6 +63,8 @@ defmodule PlexRequestWeb.Router do
   scope "/", PlexRequestWeb do
     pipe_through :browser
 
+    get "/", IndexController, :index
+    get "/health", IndexController, :health
     resources "/source", SourceController, only: [:index, :show]
     resources "/request", RequestController, only: [:index, :show]
     resources "/server", ServerController, only: [:index, :show]
