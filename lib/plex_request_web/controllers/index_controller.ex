@@ -29,7 +29,7 @@ defmodule PlexRequestWeb.IndexController do
 
   def index(conn, _params) do
     conn
-    |> html(index_html)
+    |> html(index_html())
   end
 
   def health(conn, _params) do
