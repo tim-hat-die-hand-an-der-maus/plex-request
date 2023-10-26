@@ -84,6 +84,7 @@ jobs:
         run: |
           sed -i -e "s#__IMAGE_NAME__#${IMAGE_NAME}#g" values.yaml
           sed -i -e "s#__TAG__#${GITHUB_SHA}#g" values.yaml
+          sed -i -e "s#__AUTH_PASSWORD__#${{ secrets.BASIC_AUTH_PASSWORD }}#g" values.yaml
           sed -i -e "s#__SECRET_KEY_BASE__#${{ secrets.SECRET_KEY_BASE }}#g" values.yaml
       - name: install helm chart
         uses: BlindfoldedSurgery/github-action-helm@v0.3.0
