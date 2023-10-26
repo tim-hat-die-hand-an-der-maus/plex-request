@@ -1,6 +1,5 @@
 defmodule PlexRequestWeb.Api.RequestJSON do
   alias PlexRequest.Requests.Request
-  alias PlexRequestWeb.Api
 
   @doc """
   Renders a list of request.

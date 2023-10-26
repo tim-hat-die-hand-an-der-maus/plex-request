@@ -72,6 +72,11 @@ RUN mix release
 # the compiled release and other runtime necessities
 FROM ${RUNNER_IMAGE}
 
+ARG AUTH_USERNAME
+ARG AUTH_PASSWORD
+RUN test -n "$AUTH_USERNAME"
+RUN test -n "$AUTH_PASSWORD"
+
 RUN apt-get update -y && \
   apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates \
   && apt-get clean && rm -f /var/lib/apt/lists/*_*

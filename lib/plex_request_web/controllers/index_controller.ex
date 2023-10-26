@@ -2,9 +2,6 @@ defmodule PlexRequestWeb.IndexController do
   use PlexRequestWeb, :controller
   use Phoenix.LiveView
 
-  alias PlexRequest.Plex
-  alias PlexRequest.Plex.Server
-
   def index_html() do
     """
     <html lang="en">
