@@ -8,7 +8,12 @@
 </.header>
 
 <.table id="request" rows={@request_collection} row_click={&JS.navigate(~p"/request/#{&1}")}>
-  <:col :let={request} label="Upstream"><%= request.upstream_id %></:col>
+  <:col :let={request} label="Upstream">
+    <% imdbLink = "https://imdb.com/title/" <> request.upstream_id %>
+    <.link href={imdbLink}>
+      <%= request.upstream_id %>
+    </.link>
+  </:col>
   <:col :let={request} label="Source"><%= request.source.name %></:col>
   <:col :let={request} label="Availability"><%= request.fulfiled_by %></:col>
   <:action :let={request}>

@@ -9,7 +9,10 @@
 </.header>
 
 <.list>
-  <:item title="Upstream"><%= @request.upstream_id %></:item>
+  <:item title="Upstream">
+    <% imdbLink = "https://imdb.com/title/" <> @request.upstream_id %>
+    <.link href={imdbLink}><%= @request.upstream_id %></.link>
+  </:item>
   <:item title="Source"><%= @request.source.name %></:item>
 </.list>
 
