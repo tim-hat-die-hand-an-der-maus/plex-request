@@ -6,6 +6,7 @@ defmodule PlexRequestWeb.ServerLibraryItemController do
 
   def index(conn, _params) do
     server_library_item = Plex.list_server_library_item()
+
     render(conn, :index, server_library_item_collection: server_library_item)
   end
 

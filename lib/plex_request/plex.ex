@@ -311,7 +311,7 @@ defmodule PlexRequest.Plex do
   """
   def list_server_library_item do
     Repo.all(ServerLibraryItem)
-    |> Repo.preload(:server_library)
+    |> Repo.preload(server_library: :server)
   end
 
   @doc """
@@ -330,7 +330,7 @@ defmodule PlexRequest.Plex do
   """
   def get_server_library_item!(id) do
     Repo.get!(ServerLibraryItem, id)
-    |> Repo.preload(:server_library)
+    |> Repo.preload(server_library: :server)
   end
 
   @doc """

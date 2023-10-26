@@ -11,6 +11,7 @@
   <:col :let={server_library_item} label="Name"><%= server_library_item.name %></:col>
   <:col :let={server_library_item} label="Year"><%= server_library_item.year %></:col>
   <:col :let={server_library_item} label="Rating key"><%= server_library_item.rating_key %></:col>
+  <:col :let={server_library_item} label="Server"><%= server_library_item.server_library.server.name %></:col>
   <:action :let={server_library_item}>
     <div class="sr-only">
       <.link navigate={~p"/server_library_item/#{server_library_item}"}>Show</.link>
