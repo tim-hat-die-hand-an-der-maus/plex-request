@@ -19,17 +19,17 @@ defmodule PlexRequestWeb.Api.LibraryControllerTest do
 
   describe "index" do
     test "lists all library", %{conn: conn} do
-      conn = get(conn, ~p"/api/api/library")
+      conn = get(conn, ~p"/api/library")
       assert json_response(conn, 200)["data"] == []
     end
   end
 
   describe "create library" do
     test "renders library when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/api/api/library", library: @create_attrs)
+      conn = post(conn, ~p"/api/library", library: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get(conn, ~p"/api/api/library/#{id}")
+      conn = get(conn, ~p"/api/library/#{id}")
 
       assert %{
                "id" => ^id,
@@ -38,7 +38,7 @@ defmodule PlexRequestWeb.Api.LibraryControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/api/api/library", library: @invalid_attrs)
+      conn = post(conn, ~p"/api/library", library: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -47,10 +47,10 @@ defmodule PlexRequestWeb.Api.LibraryControllerTest do
     setup [:create_library]
 
     test "renders library when data is valid", %{conn: conn, library: %Library{id: id} = library} do
-      conn = put(conn, ~p"/api/api/library/#{library}", library: @update_attrs)
+      conn = put(conn, ~p"/api/library/#{library}", library: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, ~p"/api/api/library/#{id}")
+      conn = get(conn, ~p"/api/library/#{id}")
 
       assert %{
                "id" => ^id,
@@ -59,7 +59,7 @@ defmodule PlexRequestWeb.Api.LibraryControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, library: library} do
-      conn = put(conn, ~p"/api/api/library/#{library}", library: @invalid_attrs)
+      conn = put(conn, ~p"/api/library/#{library}", library: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
@@ -68,11 +68,11 @@ defmodule PlexRequestWeb.Api.LibraryControllerTest do
     setup [:create_library]
 
     test "deletes chosen library", %{conn: conn, library: library} do
-      conn = delete(conn, ~p"/api/api/library/#{library}")
+      conn = delete(conn, ~p"/api/library/#{library}")
       assert response(conn, 204)
 
       assert_error_sent 404, fn ->
-        get(conn, ~p"/api/api/library/#{library}")
+        get(conn, ~p"/api/library/#{library}")
       end
     end
   end

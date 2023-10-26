@@ -15,7 +15,7 @@ defmodule PlexRequestWeb.Api.LibraryController do
     with {:ok, %Library{} = library} <- Plex.create_library(library_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/api/library/#{library}")
+      |> put_resp_header("location", ~p"/api/library/#{library}")
       |> render(:show, library: library)
     end
   end
