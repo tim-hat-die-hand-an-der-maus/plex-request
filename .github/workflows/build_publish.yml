@@ -36,7 +36,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Build container image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: false
           context: .
@@ -62,7 +62,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
       - name: Build and push container image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           context: .
